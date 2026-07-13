@@ -6,9 +6,12 @@ LABEL description="Image de l'application java-maven-generique"
 
 ENV APP_HOME=/app
 ENV JAVA_OPTS=""
+
 WORKDIR $APP_HOME
 
-COPY target/java-maven.jar app.jar
+# ---- Flexible : n'importe quel nom/version de jar dans target/ ----
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
 
 RUN echo "Build termine" > /app/build-info.txt
 

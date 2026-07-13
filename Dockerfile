@@ -9,9 +9,9 @@ ENV JAVA_OPTS=""
 
 WORKDIR $APP_HOME
 
-# ---- Flexible : n'importe quel nom/version de jar dans target/ ----
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+ARG ARTIFACT_ID=java-maven
+ARG VERSION=0.1-SNAPSHOT
+COPY target/${ARTIFACT_ID}-${VERSION}.jar app.jar
 
 RUN echo "Build termine" > /app/build-info.txt
 

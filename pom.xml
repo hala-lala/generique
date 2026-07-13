@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gael</groupId>
   <artifactId>java-maven</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
@@ -22,7 +22,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>java-maven</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -39,7 +38,6 @@
         </plugins>
     </build>
     <profiles>
-
         <profile>
             <id>dev</id>
             <activation>
@@ -50,7 +48,6 @@
                 <log.level>DEBUG</log.level>
             </properties>
         </profile>
-
         <profile>
             <id>prod</id>
             <properties>
@@ -58,6 +55,5 @@
                 <log.level>ERROR</log.level>
             </properties>
         </profile>
-
     </profiles>
 </project>

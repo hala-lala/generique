@@ -13,6 +13,10 @@
             <url>http://localhost:8082/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

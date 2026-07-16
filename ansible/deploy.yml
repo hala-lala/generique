@@ -1,0 +1,5 @@
+---
+- name: Déployer java-maven-generique
+  hosts: local
+  roles:
+    - deploy-java-app

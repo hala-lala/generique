@@ -6,4 +6,3 @@ image_tag: latest
 container_name: java-maven-app
 host_port: 8080
 container_port: 8080
-jar_version: "0.2-SNAPSHOT"

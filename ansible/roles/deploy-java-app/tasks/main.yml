@@ -29,6 +29,13 @@
     dest: "{{ project_dir }}"
     force: yes
 
+- name: Extraire la version depuis le pom.xml
+  ansible.builtin.shell:
+    cmd: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+    chdir: "{{ project_dir }}"
+  register: pom_version
+  changed_when: false
+
 - name: Builder le jar avec Maven
   ansible.builtin.command:
     cmd: mvn clean package
@@ -42,7 +49,7 @@
     build:
       path: "{{ project_dir }}"
       args:
-        VERSION: "{{ jar_version }}"
+        VERSION: "{{ pom_version.stdout }}"
 
 - name: Supprimer l'ancien conteneur s'il existe
   community.docker.docker_container:

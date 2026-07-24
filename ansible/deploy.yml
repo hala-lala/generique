@@ -1,5 +1,5 @@
 ---
 - name: Déployer java-maven-generique
-  hosts: target
+  hosts: nodes
   roles:
     - deploy-java-app

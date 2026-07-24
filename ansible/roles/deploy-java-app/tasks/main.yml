@@ -1,9 +1,48 @@
 ---
-- name: Vérifier que l'image Docker existe
+- name: Installer le JDK 21 complet
+  become: true
+  apt:
+    name: openjdk-21-jdk-headless
+    state: present
+    update_cache: yes
+
+- name: Installer Maven
+  become: true
+  apt:
+    name: maven
+    state: present
+
+- name: Installer pip
+  become: true
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Installer le module Python docker
+  pip:
+    name: docker
+    extra_args: --break-system-packages
+
+- name: Cloner ou mettre à jour le projet depuis Git
+  ansible.builtin.git:
+    repo: "{{ repo_url }}"
+    dest: "{{ project_dir }}"
+    force: yes
+
+- name: Builder le jar avec Maven
+  ansible.builtin.command:
+    cmd: mvn clean package
+    chdir: "{{ project_dir }}"
+
+- name: Builder l'image Docker
   community.docker.docker_image:
     name: "{{ image_name }}"
     tag: "{{ image_tag }}"
-    source: local
+    source: build
+    build:
+      path: "{{ project_dir }}"
+      args:
+        VERSION: "{{ jar_version }}"
 
 - name: Supprimer l'ancien conteneur s'il existe
   community.docker.docker_container:

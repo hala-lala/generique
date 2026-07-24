@@ -1,6 +1,9 @@
 ---
+repo_url: "https://github.com/hala-lala/generique.git"
+project_dir: "/home/noeud/generique"
 image_name: java-maven-generique
 image_tag: latest
 container_name: java-maven-app
 host_port: 8080
 container_port: 8080
+jar_version: "0.2-SNAPSHOT"
